@@ -1,0 +1,6 @@
+{
+  "name": "FocusNote Pomodoro",
+  "description": "A dedicated Pomodoro study timer with integrated progress tracking, study notes, and focus music designed for students.",
+  "requestFramePermissions": ["notifications"],
+  "majorCapabilities": []
+}
