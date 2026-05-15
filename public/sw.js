@@ -1,4 +1,4 @@
-const CACHE_NAME = "focusnote-pomodoro-logo-final-v1";
+const CACHE_NAME = "focusnote-pomodoro-logo-final-v2";
 
 self.addEventListener("install", () => {
   self.skipWaiting();
