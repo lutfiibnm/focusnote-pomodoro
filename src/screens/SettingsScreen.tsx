@@ -8,20 +8,17 @@ import {
   Volume2,
   Moon,
   Sun,
-  Trash2,
   Clock,
   Info,
   Play,
   Pause,
 } from 'lucide-react';
 import { StorageService } from '../services/storageService';
-import { CustomButton } from '../components/CustomButton';
 import { musicService } from '../services/musicService';
 
 export const SettingsScreen: React.FC = () => {
   const [settings, setSettings] = useState(StorageService.getSettings());
   const [isTestPlaying, setIsTestPlaying] = useState(false);
-  const [isResetConfirming, setIsResetConfirming] = useState(false);
 
   const handleUpdate = (updates: Partial<typeof settings>) => {
     const newSettings = { ...settings, ...updates };
@@ -47,76 +44,29 @@ export const SettingsScreen: React.FC = () => {
     setIsTestPlaying(!isTestPlaying);
   };
 
-  const handleReset = () => {
-    if (isResetConfirming) {
-      StorageService.resetData();
-      window.location.reload();
-    } else {
-      setIsResetConfirming(true);
-      setTimeout(() => setIsResetConfirming(false), 3000);
-    }
-  };
-
-  const pageStyle: React.CSSProperties = {
-    backgroundColor: '#f1f5f9',
-    color: '#0f172a',
-  };
-
-  const cardStyle: React.CSSProperties = {
-    backgroundColor: '#ffffff',
-    color: '#0f172a',
-    borderColor: '#e2e8f0',
-  };
-
-  const titleStyle: React.CSSProperties = {
-    color: '#0f172a',
-    opacity: 1,
-    visibility: 'visible',
-  };
-
-  const textStyle: React.CSSProperties = {
-    color: '#475569',
-    opacity: 1,
-    visibility: 'visible',
-  };
-
-  const inputStyle: React.CSSProperties = {
-    backgroundColor: '#f1f5f9',
-    color: '#0f172a',
-  };
-
   return (
-    <div className="max-w-2xl mx-auto py-8 px-4" style={pageStyle}>
-      <div className="mb-10 text-center" style={pageStyle}>
-        <h1
-          className="text-3xl font-black mb-2 flex items-center justify-center gap-3"
-          style={titleStyle}
-        >
-          <span style={titleStyle}>Pengaturan</span>
+    <div className="max-w-2xl mx-auto py-8 px-4 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors">
+      <div className="mb-10 text-center">
+        <h1 className="text-3xl font-black mb-2 flex items-center justify-center gap-3 text-slate-900 dark:text-white">
+          <span>Pengaturan</span>
           <span aria-hidden="true">⚙️</span>
         </h1>
 
-        <p className="font-medium" style={textStyle}>
+        <p className="font-medium text-slate-600 dark:text-slate-300">
           Sesuaikan aplikasi dengan gaya belajarmu.
         </p>
       </div>
 
-      <div
-        className="rounded-[2rem] p-8 shadow-brand border space-y-8"
-        style={cardStyle}
-      >
+      <div className="rounded-[2rem] p-8 shadow-brand border space-y-8 bg-white dark:bg-slate-900 border-slate-100 dark:border-slate-800 text-slate-900 dark:text-white">
         <section>
-          <h3 className="flex items-center font-bold mb-4" style={titleStyle}>
+          <h3 className="flex items-center font-bold mb-4 text-slate-900 dark:text-white">
             <Clock size={20} className="mr-2 text-blue-500" />
             Durasi Timer
           </h3>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div className="space-y-2">
-              <label
-                className="text-[10px] font-bold uppercase"
-                style={textStyle}
-              >
+              <label className="text-[10px] font-bold uppercase text-slate-500 dark:text-slate-300">
                 Sesi Fokus (Menit)
               </label>
 
@@ -124,8 +74,7 @@ export const SettingsScreen: React.FC = () => {
                 type="number"
                 min="1"
                 max="60"
-                className="w-full p-4 rounded-xl border-none focus:ring-2 focus:ring-blue-400 font-bold shadow-inner"
-                style={inputStyle}
+                className="w-full p-4 rounded-xl border-none focus:ring-2 focus:ring-blue-400 font-bold shadow-inner bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white"
                 value={settings.focusDuration}
                 onChange={(e) =>
                   handleUpdate({
@@ -136,10 +85,7 @@ export const SettingsScreen: React.FC = () => {
             </div>
 
             <div className="space-y-2">
-              <label
-                className="text-[10px] font-bold uppercase"
-                style={textStyle}
-              >
+              <label className="text-[10px] font-bold uppercase text-slate-500 dark:text-slate-300">
                 Sesi Istirahat (Menit)
               </label>
 
@@ -147,8 +93,7 @@ export const SettingsScreen: React.FC = () => {
                 type="number"
                 min="1"
                 max="30"
-                className="w-full p-4 rounded-xl border-none focus:ring-2 focus:ring-blue-400 font-bold shadow-inner"
-                style={inputStyle}
+                className="w-full p-4 rounded-xl border-none focus:ring-2 focus:ring-blue-400 font-bold shadow-inner bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white"
                 value={settings.breakDuration}
                 onChange={(e) =>
                   handleUpdate({
@@ -160,24 +105,21 @@ export const SettingsScreen: React.FC = () => {
           </div>
         </section>
 
-        <div className="h-px" style={{ backgroundColor: '#e2e8f0' }} />
+        <div className="h-px bg-slate-200 dark:bg-slate-700" />
 
         <section className="space-y-6">
           <div className="flex items-center justify-between gap-4">
             <div className="flex items-center gap-3">
-              <div
-                className="p-3 rounded-2xl text-blue-500"
-                style={{ backgroundColor: '#eff6ff' }}
-              >
+              <div className="p-3 rounded-2xl bg-blue-50 dark:bg-blue-950/60 text-blue-500 dark:text-blue-300">
                 <Volume2 size={20} />
               </div>
 
               <div>
-                <p className="font-bold" style={titleStyle}>
+                <p className="font-bold text-slate-900 dark:text-white">
                   Musik Istirahat
                 </p>
 
-                <p className="text-xs font-medium" style={textStyle}>
+                <p className="text-xs font-medium text-slate-600 dark:text-slate-300">
                   Putar musik otomatis saat istirahat
                 </p>
               </div>
@@ -193,13 +135,13 @@ export const SettingsScreen: React.FC = () => {
                 }
               />
 
-              <div className="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600" />
+              <div className="w-11 h-6 bg-slate-200 dark:bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600" />
             </label>
           </div>
 
           {settings.musicEnabled && (
             <div className="flex items-center justify-between pl-14">
-              <p className="text-xs font-bold uppercase" style={textStyle}>
+              <p className="text-xs font-bold uppercase text-slate-500 dark:text-slate-300">
                 Cek Suara Musik
               </p>
 
@@ -226,13 +168,7 @@ export const SettingsScreen: React.FC = () => {
 
           <div className="flex items-center justify-between gap-4">
             <div className="flex items-center gap-3">
-              <div
-                className="p-3 rounded-2xl"
-                style={{
-                  backgroundColor: '#f1f5f9',
-                  color: '#475569',
-                }}
-              >
+              <div className="p-3 rounded-2xl bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-300">
                 {settings.theme === 'light' ? (
                   <Sun size={20} />
                 ) : (
@@ -241,11 +177,11 @@ export const SettingsScreen: React.FC = () => {
               </div>
 
               <div>
-                <p className="font-bold" style={titleStyle}>
+                <p className="font-bold text-slate-900 dark:text-white">
                   Mode Kegelapan
                 </p>
 
-                <p className="text-xs font-medium" style={textStyle}>
+                <p className="text-xs font-medium text-slate-600 dark:text-slate-300">
                   Ubah ke tampilan gelap
                 </p>
               </div>
@@ -263,39 +199,16 @@ export const SettingsScreen: React.FC = () => {
                 }
               />
 
-              <div className="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600" />
+              <div className="w-11 h-6 bg-slate-200 dark:bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600" />
             </label>
           </div>
         </section>
-
-        <div className="h-px" style={{ backgroundColor: '#e2e8f0' }} />
-
-        <section>
-          <div className="flex items-center gap-3 text-red-500 mb-4">
-            <Trash2 size={20} />
-            <p className="font-bold">Zona Bahaya</p>
-          </div>
-
-          <p className="text-sm font-medium mb-4" style={textStyle}>
-            Klik tombol di bawah untuk menghapus semua data aplikasi kamu di
-            perangkat ini secara permanen.
-          </p>
-
-          <CustomButton variant="danger" className="w-full" onClick={handleReset}>
-            {isResetConfirming
-              ? 'Yakin? Klik Lagi untuk Hapus'
-              : 'Hapus Semua Data'}
-          </CustomButton>
-        </section>
       </div>
 
-      <div className="mt-8 text-center px-4" style={pageStyle}>
-        <div
-          className="text-sm font-bold flex flex-col items-center justify-center gap-2 mx-auto hover:text-blue-500 transition-colors"
-          style={textStyle}
-        >
+      <div className="mt-8 text-center px-4">
+        <div className="text-sm font-bold flex flex-col items-center justify-center gap-2 mx-auto text-slate-500 dark:text-slate-300 hover:text-blue-500 dark:hover:text-blue-300 transition-colors">
           <div className="flex items-center gap-2">
-            <Info size={16} /> FocusNote Pomodoro v1.0.7
+            <Info size={16} /> FocusNote Pomodoro v1.0.8
           </div>
 
           <div className="text-[10px] uppercase font-black tracking-[0.3em] opacity-60">
