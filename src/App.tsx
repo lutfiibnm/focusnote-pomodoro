@@ -36,9 +36,7 @@ const App: React.FC = () => {
   return (
     <Router>
       <div className="flex flex-col md:flex-row h-screen w-full bg-[#F0F4F8] dark:bg-slate-950 font-sans text-slate-800 dark:text-slate-100 overflow-hidden">
-        {/* Navigation Sidebar / Bottom Bar */}
         <nav className="w-full md:w-24 bg-white dark:bg-slate-900 border-t md:border-t-0 md:border-r border-slate-200 dark:border-slate-800 flex flex-row md:flex-col items-center justify-around md:justify-start py-4 md:py-8 md:space-y-10 z-50 order-2 md:order-1">
-          {/* Logo Desktop */}
           <div className="hidden md:flex w-14 h-14 bg-white dark:bg-slate-800 rounded-2xl items-center justify-center shadow-lg shadow-blue-200 dark:shadow-none mb-4 overflow-hidden border border-slate-100 dark:border-slate-700">
             <img
               src="./logo.png"
@@ -55,7 +53,6 @@ const App: React.FC = () => {
             <NavItem to="/about" icon={<Info size={24} />} label="Tentang" />
           </div>
 
-          {/* Bottom Logo Desktop */}
           <div className="hidden md:block mt-auto">
             <div className="w-10 h-10 rounded-full bg-white dark:bg-slate-800 overflow-hidden border-2 border-white dark:border-slate-700 shadow-sm flex items-center justify-center">
               <img
@@ -67,66 +64,16 @@ const App: React.FC = () => {
           </div>
         </nav>
 
-        {/* Main Content Area */}
         <main className="flex-1 flex flex-col overflow-y-auto relative order-1 md:order-2">
           <AnimatePresence mode="wait">
             <Routes>
-              <Route
-                path="/"
-                element={
-                  <PageWrapper>
-                    <HomeScreen />
-                  </PageWrapper>
-                }
-              />
-              <Route
-                path="/focus"
-                element={
-                  <PageWrapper>
-                    <PomodoroScreen />
-                  </PageWrapper>
-                }
-              />
-              <Route
-                path="/notes"
-                element={
-                  <PageWrapper>
-                    <NotesScreen />
-                  </PageWrapper>
-                }
-              />
-              <Route
-                path="/history"
-                element={
-                  <PageWrapper>
-                    <HistoryScreen />
-                  </PageWrapper>
-                }
-              />
-              <Route
-                path="/stats"
-                element={
-                  <PageWrapper>
-                    <StatsScreen />
-                  </PageWrapper>
-                }
-              />
-              <Route
-                path="/settings"
-                element={
-                  <PageWrapper>
-                    <SettingsScreen />
-                  </PageWrapper>
-                }
-              />
-              <Route
-                path="/about"
-                element={
-                  <PageWrapper>
-                    <AboutScreen />
-                  </PageWrapper>
-                }
-              />
+              <Route path="/" element={<PageWrapper><HomeScreen /></PageWrapper>} />
+              <Route path="/focus" element={<PageWrapper><PomodoroScreen /></PageWrapper>} />
+              <Route path="/notes" element={<PageWrapper><NotesScreen /></PageWrapper>} />
+              <Route path="/history" element={<PageWrapper><HistoryScreen /></PageWrapper>} />
+              <Route path="/stats" element={<PageWrapper><StatsScreen /></PageWrapper>} />
+              <Route path="/settings" element={<PageWrapper><SettingsScreen /></PageWrapper>} />
+              <Route path="/about" element={<PageWrapper><AboutScreen /></PageWrapper>} />
             </Routes>
           </AnimatePresence>
         </main>
