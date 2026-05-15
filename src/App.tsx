@@ -39,7 +39,7 @@ const App: React.FC = () => {
         <nav className="w-full md:w-24 bg-white dark:bg-slate-900 border-t md:border-t-0 md:border-r border-slate-200 dark:border-slate-800 flex flex-row md:flex-col items-center justify-around md:justify-start py-4 md:py-8 md:space-y-10 z-50 order-2 md:order-1">
           <div className="hidden md:flex w-14 h-14 bg-white dark:bg-slate-800 rounded-2xl items-center justify-center shadow-lg shadow-blue-200 dark:shadow-none mb-4 overflow-hidden border border-slate-100 dark:border-slate-700">
             <img
-              src="./logo.png"
+              src="./logo-final.png"
               alt="FocusNote Logo"
               className="w-12 h-12 object-contain rounded-xl"
             />
